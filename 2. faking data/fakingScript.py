@@ -16,41 +16,47 @@ fake_inspection_results = db.fake_inspection_results
 fake_yelp_business = db.fake_yelp_business
 
 for mapping in mappings:
-    # Für jedes Mapping die entsprechenden Dokumente holen
-    inspection_result = inspection_results.find_one({'CAMIS': mapping['CAMIS']})
-    yelp_data = yelp_business.find_one({'business_id': mapping['business_id']})
+    # Alle entsprechenden Dokumente aus inspection_results holen
+    inspection_docs = list(inspection_results.find({'CAMIS': mapping['CAMIS']}))  # In eine Liste konvertieren
 
-    # Fehlerbehandlung, falls das inspection_result Dokument nicht existiert
-    if inspection_result is None:
-        print(f"Kein Eintrag für CAMIS {mapping['CAMIS']} gefunden.")
+    # Falls keine Dokumente gefunden werden, Fehlermeldung ausgeben
+    if not inspection_docs:
+        print(f"Keine Einträge für CAMIS {mapping['CAMIS']} gefunden.")
         continue
 
-    # Erstellen der fake_inspection_results Collection
-    fake_inspection_result = inspection_result.copy()
-    fake_inspection_result['CAMIS'] = mapping['business_id']  # CAMIS durch business_id ersetzen
-    fake_inspection_results.insert_one(fake_inspection_result)
+    # Jedes Dokument verarbeiten
+    for inspection_doc in inspection_docs:
+        # Kopie des Inspektionsdatensatzes erstellen und CAMIS ersetzen
+        fake_inspection_doc = inspection_doc.copy()
+        fake_inspection_doc['CAMIS'] = mapping['business_id']  # CAMIS durch business_id ersetzen
+        fake_inspection_results.insert_one(fake_inspection_doc)
 
-    # Erstellen der fake_yelp_business Collection
-    fake_yelp_entry = yelp_data.copy()
+    # Yelp-Daten holen und anpassen
+    yelp_data = yelp_business.find_one({'business_id': mapping['business_id']})
 
-    # Name von NYC Inspection übernehmen
-    fake_yelp_entry['name'] = inspection_result.get('DBA', 'Unbekannt')
+    if yelp_data:
+        fake_yelp_entry = yelp_data.copy()
 
-    # Adresse von NYC Inspection übernehmen (mit Fehlerbehandlung)
-    building = inspection_result.get('BUILDING', '')
-    street = inspection_result.get('STREET', '')
-    fake_yelp_entry['address'] = f"{building} {street}".strip()  # Adresse zusammenfügen
+        # Yelp-Daten mit Informationen aus einer beliebigen Inspektion ergänzen
+        example_inspection = inspection_docs[0]
+        fake_yelp_entry['name'] = example_inspection.get('DBA', 'Unbekannt')
 
-    # Stadt und PLZ von NYC Inspection übernehmen
-    fake_yelp_entry['city'] = inspection_result.get('BORO', 'Unbekannt')
-    fake_yelp_entry['postal_code'] = inspection_result.get('ZIPCODE', 'Unbekannt')
+        # Adresse zusammenfügen
+        building = example_inspection.get('BUILDING', '')
+        street = example_inspection.get('STREET', '')
+        fake_yelp_entry['address'] = f"{building} {street}".strip()
 
-    # Geodaten von NYC Inspection übernehmen
-    fake_yelp_entry['latitude'] = inspection_result.get('Latitude', None)
-    fake_yelp_entry['longitude'] = inspection_result.get('Longitude', None)
+        # Stadt und PLZ übernehmen
+        fake_yelp_entry['city'] = example_inspection.get('BORO', 'Unbekannt')
+        fake_yelp_entry['postal_code'] = example_inspection.get('ZIPCODE', 'Unbekannt')
 
-    # Wenn Geodaten fehlen, setzen wir sie auf None (oder einen Standardwert)
-    if fake_yelp_entry['latitude'] is None or fake_yelp_entry['longitude'] is None:
-        print(f"Geodaten fehlen für CAMIS {mapping['CAMIS']}.")
+        # Geodaten übernehmen
+        fake_yelp_entry['latitude'] = example_inspection.get('Latitude', None)
+        fake_yelp_entry['longitude'] = example_inspection.get('Longitude', None)
 
-    fake_yelp_business.insert_one(fake_yelp_entry)
+        # Fehlende Geodaten melden
+        if fake_yelp_entry['latitude'] is None or fake_yelp_entry['longitude'] is None:
+            print(f"Geodaten fehlen für CAMIS {mapping['CAMIS']}.")
+
+        # Yelp-Daten einfügen
+        fake_yelp_business.insert_one(fake_yelp_entry)
