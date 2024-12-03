@@ -2,14 +2,14 @@ from pymongo import MongoClient
 
 # MongoDB-Verbindung aufbauen
 client = MongoClient('mongodb://localhost:27017/')
-db = client['NYAnalyse']
+db = client['PortfolioPruefung']
 
 # Die Mappings aus der Collection "mapping" holen
 mappings = db.mapping.find()
 
 # Die originalen Daten holen
-inspection_results = db['inspections']
-yelp_business = db['yelpBusiness']
+inspection_results = db['inspection_results']
+yelp_business = db['yelp_business']
 
 # Fake-Collections erstellen
 fake_inspection_results = db.fake_inspection_results
