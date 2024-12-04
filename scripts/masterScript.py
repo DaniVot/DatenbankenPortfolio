@@ -10,11 +10,11 @@ scripts = [
     os.path.join(base_dir, "3. data cleansing", "consistencyCheck.py"),
     os.path.join(base_dir, "3. data cleansing", "consistencyEnforcement.py"),
     os.path.join(base_dir, "3. data cleansing", "removeMissingGeoData.py"),
-    os.path.join(base_dir, "3. data cleansing", "removeMissingScrore.py"),
+    os.path.join(base_dir, "3. data cleansing", "removeMissingScore.py"),
     os.path.join(base_dir, "3. data cleansing", "deleteRestaurantsWithoutInspections.py"),
     os.path.join(base_dir, "3. data cleansing", "dataTypesCheck.py"),
-    os.path.join(base_dir, "4. mySQLExport", "export.py"),
     os.path.join(base_dir, "3. data cleansing", "searchDuplicates.py"),
+    os.path.join(base_dir, "4. mySQLExport", "export.py"),
 ]
 
 # Loop through and execute each script
