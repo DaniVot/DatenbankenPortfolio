@@ -17,11 +17,12 @@ try:
         host="localhost",
         user="root",
         password="my-secret-pw",
-        database="PortfolioPruefung",
         port=3306
     )
     print("Connected to MySQL")
     mysql_cursor = mysql_conn.cursor()
+    mysql_cursor.execute("CREATE DATABASE IF NOT EXISTS PortfolioPruefung")
+    mysql_cursor.execute("USE PortfolioPruefung")
 except Error as e:
     print(f"Error connecting to MySQL: {e}")
     exit()
