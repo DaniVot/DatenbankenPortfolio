@@ -4,11 +4,11 @@ from pymongo import MongoClient
 client = MongoClient('mongodb://localhost:27017/')
 db = client['PortfolioPruefung']
 
-# Standardwerte für fehlende Felder
+# Standardwerte für fehlende Felder (nur Geodaten und Adressfelder als None)
 default_values = {
-    'BUILDING': 'Unknown',
-    'STREET': 'Unknown',
-    'ZIPCODE': 'Unknown',
+    'BUILDING': None,
+    'STREET': None,
+    'ZIPCODE': None,
     'Latitude': None,  # Geodaten werden später geprüft
     'Longitude': None
 }

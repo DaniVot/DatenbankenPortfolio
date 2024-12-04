@@ -39,16 +39,16 @@ for mapping in mappings:
 
         # Yelp-Daten mit Informationen aus einer beliebigen Inspektion ergänzen
         example_inspection = inspection_docs[0]
-        fake_yelp_entry['name'] = example_inspection.get('DBA', 'Unbekannt')
+        fake_yelp_entry['name'] = example_inspection.get('DBA', None)  # Setze None, wenn kein Name vorhanden ist
 
         # Adresse zusammenfügen
-        building = example_inspection.get('BUILDING', '')
-        street = example_inspection.get('STREET', '')
-        fake_yelp_entry['address'] = f"{building} {street}".strip()
+        building = example_inspection.get('BUILDING', None)
+        street = example_inspection.get('STREET', None)
+        fake_yelp_entry['address'] = f"{building} {street}".strip() if building or street else None  # Setze None, wenn keine Adresse vorhanden ist
 
         # Stadt und PLZ übernehmen
-        fake_yelp_entry['city'] = example_inspection.get('BORO', 'Unbekannt')
-        fake_yelp_entry['postal_code'] = example_inspection.get('ZIPCODE', 'Unbekannt')
+        fake_yelp_entry['city'] = example_inspection.get('BORO', None)
+        fake_yelp_entry['postal_code'] = example_inspection.get('ZIPCODE', None)
 
         # Geodaten übernehmen
         fake_yelp_entry['latitude'] = example_inspection.get('Latitude', None)

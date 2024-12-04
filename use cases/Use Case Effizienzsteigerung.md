@@ -1,7 +1,7 @@
 ### **Use Case: Effizienzsteigerung der Inspektionsprozesse des DOHMH**
 
 #### **Hintergrund:**
-Das **Department of Health and Mental Hygiene (DOHMH)** hat die Herausforderung, die Einhaltung von Gesundheitsvorschriften in einer großen Anzahl von Restaurants in New York City zu überwachen. Aufgrund begrenzter personeller Ressourcen ist eine gleichmäßig intensive Kontrolle aller Restaurants nicht möglich. Potenzielle Verstöße in Hochrisikobereichen oder bei wiederholt auffälligen Restaurantkategorien könnten unentdeckt bleiben. 
+Das **Department of Health and Mental Hygiene (DOHMH)** hat die Herausforderung, die Einhaltung von Gesundheitsvorschriften in einer großen Anzahl von Restaurants (ca. 29 000) in New York City zu überwachen. Aufgrund begrenzter personeller Ressourcen ist eine gleichmäßig intensive Kontrolle aller Restaurants nicht möglich. Potenzielle Verstöße in Hochrisikobereichen oder bei wiederholt auffälligen Restaurantkategorien könnten unentdeckt bleiben. 
 
 #### **Zielsetzung:**
 Das DOHMH hat DataBros, kurz DB (eine Datenanalysefirma) damit beauftragt, eine datenbasierte Entscheidungsgrundlage zu entwickeln, um die Effizienz und Effektivität von Inspektionen zu verbessern. Der Schwerpunkt liegt darauf:  
@@ -12,6 +12,8 @@ Das Ziel ist es, Inspektoren gezielt auf risikobehaftete Restaurants und Regione
 - **Zeit eingespart** wird,  
 - **Personalressourcen entlastet** werden, und  
 - die **Qualität und Relevanz der Inspektionen** verbessert wird.  
+
+Korellationskoeffiziert zwischen Bewertung auf yelp und dem Inspektions-Score.
 
 ---
 
