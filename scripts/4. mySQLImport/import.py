@@ -104,6 +104,13 @@ def transfer_data():
         business_id = doc["CAMIS"]
         cuisine_description = doc.get("CUISINE DESCRIPTION")
         inspection_date = datetime.strptime(doc["INSPECTION DATE"], "%m/%d/%Y").date()
+        
+        # Check if business_id exists in yelp_business
+        mysql_cursor.execute("SELECT COUNT(*) FROM yelp_business WHERE business_id = %s", (business_id,))
+        if mysql_cursor.fetchone()[0] == 0:
+            print(f"Skipping inspection with business_id {business_id} as it does not exist in yelp_business")
+            continue
+
         insert_inspection_query = """
         INSERT INTO inspection_results (
             business_id, inspection_date, action, violation_code, violation_description, critical_flag, score, grade,
@@ -123,23 +130,24 @@ def transfer_data():
             int(doc.get("Community Board", 0)),  # Convert to int
             int(doc.get("Council District", 0)),  # Convert to int
             int(doc.get("Census Tract", 0)),  # Convert to int
-            str(doc.get("BIN")),  # Ensure BIN is a string
-            str(doc.get("BBL")),  # Ensure BBL is a string
+            doc.get("BIN"),
+            doc.get("BBL"),
             doc.get("NTA")
         )
+        
+        # Ensure all values are of the correct type
+        inspection_values = tuple(
+            int(value) if isinstance(value, (int, float)) else value
+            for value in inspection_values
+        )
+        
         mysql_cursor.execute(insert_inspection_query, inspection_values)
 
-        # Update Yelp table's cuisine_description
-        update_yelp_query = """
-        UPDATE yelp_business SET cuisine_description = %s WHERE business_id = %s;
-        """
-        mysql_cursor.execute(update_yelp_query, (cuisine_description, business_id))
-
-    # Commit all changes
     mysql_conn.commit()
+    print("Data transfer complete.")
 
+# Call the transfer_data function
 transfer_data()
-print("Data transferred successfully")
 
 # Close connections
 mysql_cursor.close()
