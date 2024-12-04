@@ -7,12 +7,14 @@ base_dir = os.path.dirname(__file__)
 # Define the scripts to execute in the desired sequence
 scripts = [
     os.path.join(base_dir, "2. faking data", "fakingScript.py"),
-    os.path.join(base_dir, "3. data cleansing", "deleteRestaurantsWithoutInspections.py"),
     os.path.join(base_dir, "3. data cleansing", "consistencyCheck.py"),
     os.path.join(base_dir, "3. data cleansing", "consistencyEnforcement.py"),
-    os.path.join(base_dir, "3. data cleansing", "searchDuplicates.py"),
+    os.path.join(base_dir, "3. data cleansing", "removeMissingGeoData.py"),
+    os.path.join(base_dir, "3. data cleansing", "removeMissingScrore.py"),
+    os.path.join(base_dir, "3. data cleansing", "deleteRestaurantsWithoutInspections.py"),
     os.path.join(base_dir, "3. data cleansing", "dataTypesCheck.py"),
     os.path.join(base_dir, "4. mySQLImport", "import.py"),
+    os.path.join(base_dir, "3. data cleansing", "searchDuplicates.py"),
 ]
 
 # Loop through and execute each script
