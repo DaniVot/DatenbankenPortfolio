@@ -27,9 +27,10 @@ def check_field_consistency(collection_name, required_fields):
 
 
 # Beispiel: Überprüfung der Konsistenz für fake_inspection_results
-required_fields_fake_inspection = ['CAMIS', 'INSPECTION DATE', 'BUILDING', 'STREET', 'ZIPCODE', 'Latitude', 'Longitude']
+required_fields_fake_inspection = ['CAMIS', 'DBA', 'BORO', 'BUILDING', 'STREET', 'ZIPCODE', 'PHONE', 'CUISINE DESCRIPTION', 'INSPECTION DATE', 'ACTION', 'VIOLATION CODE', 'VIOLATION DESCRIPTION', 'CRITICAL FLAG', 'SCORE', 'GRADE', 'GRADE DATE', 'RECORD DATE', 'INSPECTION TYPE', 'BIN', 'BBL', 'NTA']
+
 check_field_consistency("fake_inspection_results", required_fields_fake_inspection)
 
 # Beispiel: Überprüfung der Konsistenz für fake_yelp_business
-required_fields_fake_yelp = ['business_id', 'name', 'address', 'city', 'postal_code', 'latitude', 'longitude']
+required_fields_fake_yelp = ['business_id', 'name', 'address', 'postal_code', 'city', 'latitude', 'longitude', 'phone', 'stars', 'review_count']
 check_field_consistency("fake_yelp_business", required_fields_fake_yelp)
