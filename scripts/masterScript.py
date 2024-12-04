@@ -14,7 +14,9 @@ scripts = [
     os.path.join(base_dir, "3. data cleansing", "deleteRestaurantsWithoutInspections.py"),
     os.path.join(base_dir, "3. data cleansing", "dataTypesCheck.py"),
     os.path.join(base_dir, "3. data cleansing", "searchDuplicates.py"),
-    os.path.join(base_dir, "4. mySQLExport", "export.py"),
+    os.path.join(base_dir, "4. mySQL", "export.py"),
+    os.path.join(base_dir, "4. mySQL", "reorganizeCuisine.py"),
+    os.path.join(base_dir, "4. mySQL", "coordinatesExport.py"),
 ]
 
 # Loop through and execute each script

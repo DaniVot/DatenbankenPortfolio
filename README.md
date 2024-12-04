@@ -18,3 +18,9 @@ MongoSH Skript in MongoDBCompass ausführen um die mapping collection zu erhalte
 8.	searchDuplicates (sucht nach Duplikate -> findet keine)
 9.  export (exportiert die Daten in mySQL)
 
+# Koordinaten exportieren
+Die Koordinaten sind nach durchlaufen aller Skripts in den Views. 
+Diese sind in 3 Kategorien eingeteilt:
+0-33: bad
+34-66 : ok
+67-100 : good
