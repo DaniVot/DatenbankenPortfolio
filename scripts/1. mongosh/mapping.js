@@ -1,5 +1,5 @@
 // Schritt 1: Alle eindeutigen Restaurants aus den Inspection Results extrahieren
-const uniqueRestaurants = db.NYC.Restaurant.Inspection.Results.distinct("CAMIS");
+const uniqueRestaurants = db.NYC.inspection_results.distinct("CAMIS");
 
 // Schritt 2: Yelp-Restaurants mit ausreichend Bewertungen und Top-Bewertungen filtern
 const topYelpRestaurants = db.yelp_business.aggregate([
