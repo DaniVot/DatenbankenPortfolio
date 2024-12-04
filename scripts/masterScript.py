@@ -13,7 +13,7 @@ scripts = [
     os.path.join(base_dir, "3. data cleansing", "removeMissingScrore.py"),
     os.path.join(base_dir, "3. data cleansing", "deleteRestaurantsWithoutInspections.py"),
     os.path.join(base_dir, "3. data cleansing", "dataTypesCheck.py"),
-    os.path.join(base_dir, "4. mySQLImport", "import.py"),
+    os.path.join(base_dir, "4. mySQLExport", "export.py"),
     os.path.join(base_dir, "3. data cleansing", "searchDuplicates.py"),
 ]
 

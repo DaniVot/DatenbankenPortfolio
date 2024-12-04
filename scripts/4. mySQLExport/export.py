@@ -38,7 +38,6 @@ CREATE TABLE IF NOT EXISTS yelp_business (
     borough VARCHAR(50),
     latitude DECIMAL(10, 8),
     longitude DECIMAL(11, 8),
-    phone VARCHAR(15),
     stars DECIMAL(2, 1),
     reviews INT,
     cuisine_description VARCHAR(255)
@@ -58,12 +57,6 @@ CREATE TABLE IF NOT EXISTS inspection_results (
     score INT,
     grade CHAR(1),
     inspection_type VARCHAR(255),
-    community_board INT,
-    council_district INT,
-    census_tract INT,
-    bin VARCHAR(20),
-    bbl VARCHAR(20),
-    nta VARCHAR(50),
     FOREIGN KEY (business_id) REFERENCES yelp_business(business_id) ON DELETE CASCADE
 );
 """
@@ -115,8 +108,8 @@ def transfer_data():
         insert_inspection_query = """
         INSERT INTO inspection_results (
             business_id, inspection_date, action, violation_code, violation_description, critical_flag, score, grade,
-            inspection_type, community_board, council_district, census_tract, bin, bbl, nta
-        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s, %s);
+            inspection_type
+        ) VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
         """
         inspection_values = (
             business_id,
@@ -128,12 +121,6 @@ def transfer_data():
             int(doc.get("SCORE", 0)),  # Convert to int
             doc.get("GRADE"),
             doc.get("INSPECTION TYPE"),
-            int(doc.get("Community Board", 0)),  # Convert to int
-            int(doc.get("Council District", 0)),  # Convert to int
-            int(doc.get("Census Tract", 0)),  # Convert to int
-            doc.get("BIN"),
-            doc.get("BBL"),
-            doc.get("NTA")
         )
         
         # Ensure all values are of the correct type
