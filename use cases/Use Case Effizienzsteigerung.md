@@ -13,7 +13,7 @@ Das Ziel ist es, Inspektoren gezielt auf risikobehaftete Restaurants und Regione
 - **Personalressourcen entlastet** werden, und  
 - die **Qualität und Relevanz der Inspektionen** verbessert wird.  
 
-Korellationskoeffiziert zwischen Bewertung auf yelp und dem Inspektions-Score.
+
 
 ---
 

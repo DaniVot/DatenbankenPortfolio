@@ -1,0 +1,1 @@
+Korellationskoeffiziert zwischen Bewertung auf yelp und dem Inspektions-Score.
