@@ -11,6 +11,7 @@ scripts = [
     os.path.join(base_dir, "3. data cleansing", "consistencyEnforcement.py"),
     os.path.join(base_dir, "3. data cleansing", "removeMissingGeoData.py"),
     os.path.join(base_dir, "3. data cleansing", "removeMissingScore.py"),
+    os.path.join(base_dir, "3. data cleansing", "calculateGrade.py"),
     os.path.join(base_dir, "3. data cleansing", "deleteRestaurantsWithoutInspections.py"),
     os.path.join(base_dir, "3. data cleansing", "dataTypesCheck.py"),
     os.path.join(base_dir, "3. data cleansing", "searchDuplicates.py"),
