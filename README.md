@@ -24,3 +24,10 @@ Diese sind in 3 Kategorien eingeteilt:
 0-33: bad
 34-66 : ok
 67-100 : good
+
+# Auswertung
+1. Hotspots visulasieren (MatLab)
+2. Zip codes bewerten (Manuell im schlimmsten Fall)
+3. Yelp Korrelationskoeffizient (zwischen Yelp Bewertung und Score)
+
+# Warum SQL?
