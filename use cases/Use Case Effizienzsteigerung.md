@@ -13,8 +13,6 @@ Das Ziel ist es, Inspektoren gezielt auf risikobehaftete Restaurants und Regione
 - **Personalressourcen entlastet** werden, und  
 - die **Qualität und Relevanz der Inspektionen** verbessert wird.  
 
-
-
 ---
 
 #### **Genutzte Datensätze:**
@@ -22,8 +20,6 @@ Das Ziel ist es, Inspektoren gezielt auf risikobehaftete Restaurants und Regione
    - Gefakt und angepasst für die Bedürfnisse des Projekts, enthält Restaurantbewertungen, Kategorien und Check-in-Muster.  
 2. **DOHMH-Inspektionsresultate:**  
    - Originaldatensatz mit Gesundheitsnoten, Verstoßdetails und geografischen Informationen.  
-3. **Foursquare-Check-in-Datensatz:**  
-   - Daten über Kundenaktivität und Check-in-Muster, die mit anderen Quellen verknüpft werden.  
 
 ---
 
