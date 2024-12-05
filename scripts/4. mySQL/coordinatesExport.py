@@ -20,7 +20,7 @@ cursor.execute("DROP VIEW IF EXISTS all_inspections")
 # Create views
 cursor.execute("""
     CREATE VIEW A_inspections AS
-    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough
+    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough, yb.postal_code
     FROM inspection_results ir
     JOIN yelp_business yb ON ir.business_id = yb.business_id
     WHERE ir.score BETWEEN 0 AND 13
@@ -28,7 +28,7 @@ cursor.execute("""
 
 cursor.execute("""
     CREATE VIEW B_inspections AS
-    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough
+    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough, yb.postal_code
     FROM inspection_results ir
     JOIN yelp_business yb ON ir.business_id = yb.business_id
     WHERE ir.score BETWEEN 14 AND 27
@@ -36,7 +36,7 @@ cursor.execute("""
 
 cursor.execute("""
     CREATE VIEW C_inspections AS
-    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough
+    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough, yb.postal_code
     FROM inspection_results ir
     JOIN yelp_business yb ON ir.business_id = yb.business_id
     WHERE ir.score BETWEEN 28 AND 100
@@ -44,7 +44,7 @@ cursor.execute("""
 
 cursor.execute("""
     CREATE VIEW all_inspections AS
-    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough
+    SELECT ir.business_id, ir.inspection_date, ir.score, yb.latitude, yb.longitude, yb.borough, yb.postal_code
     FROM inspection_results ir
     JOIN yelp_business yb ON ir.business_id = yb.business_id
 """)
