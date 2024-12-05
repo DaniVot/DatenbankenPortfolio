@@ -72,7 +72,7 @@ category_scores = merged_df.groupby('category')['score'].median().reset_index()
 
 # Visualisierung: Balkendiagramm der Medianwerte der Scores pro Kategorie
 plt.figure(figsize=(12, 8))
-sns.barplot(x='category', y='score', data=category_scores, palette='coolwarm')
+sns.barplot(x='category', y='score', data=category_scores, color='skyblue')
 plt.xticks(rotation=90)
 plt.title('Median Gesundheitsscores pro Küchenkategorie im letzten Jahr')
 plt.xlabel('Küchenkategorie')
