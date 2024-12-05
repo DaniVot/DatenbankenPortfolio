@@ -41,7 +41,9 @@ def plot_coordinates_in_matlab(coordinates, latlim, lonlim, output_file):
     scores = [coord[2] for coord in valid_coordinates]
     
     # Normalize scores for color mapping
-    norm_scores = [(score - min(scores)) / (max(scores) - min(scores)) for score in scores]
+    min_score = 0
+    max_score = 100
+    norm_scores = [(min(score, 30) - min_score) / (30 - min_score) for score in scores]
     colors = [(1 - norm_score, norm_score, 0) for norm_score in norm_scores]  # Green to red gradient
     
     latitudes = matlab.double(latitudes)
@@ -56,7 +58,7 @@ def plot_coordinates_in_matlab(coordinates, latlim, lonlim, output_file):
     
     # Plot the coordinates with varying colors based on score
     eng.eval("colormap(ax, jet);", nargout=0)  # Use 'jet' colormap for blue to red gradient
-    eng.scatterm(latitudes, longitudes, 20, colors, 'filled', nargout=0)  # Color points based on score
+    eng.scatterm(latitudes, longitudes, 10, colors, 'filled', nargout=0)  # Color points based on score, smaller dots
     eng.eval("hold off;", nargout=0)
 
     # Save as a PNG with transparency
@@ -72,8 +74,8 @@ def main():
     # Plot the entire NYC area
     plot_coordinates_in_matlab(coordinates, [40.4774, 40.9176], [-74.2591, -73.7004], 'nyc_heatmap.png')
     
-    # Plot Manhattan only
-    plot_coordinates_in_matlab(coordinates, [40.6795, 40.8820], [-74.0479, -73.9067], 'manhattan_heatmap.png')
+    # Plot Manhattan and part of Brooklyn, expanding eastwards
+    plot_coordinates_in_matlab(coordinates, [40.6000, 40.8500], [-74.0479, -73.8500], 'manhattan_brooklyn_heatmap.png')
 
 if __name__ == "__main__":
     main()
