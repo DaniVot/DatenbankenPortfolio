@@ -27,7 +27,7 @@ Diese sind in 3 Kategorien eingeteilt:
 
 # Auswertung
 1. Hotspots visulasieren (MatLab)
-2. Zip codes bewerten (Manuell im schlimmsten Fall)
+2. Zip codes bewerten (Manuell im schlimmsten Fall) nach monaten und so trennen
 3. Yelp Korrelationskoeffizient (zwischen Yelp Bewertung und Score)
 
 # Warum SQL?
